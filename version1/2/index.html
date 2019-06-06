@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Pacman</title>
+  <head>
+    <link rel="stylesheet" href="src/css/pacman.css">
+  </head>
+  <script>
+    window.funcsPac = {}
+
+  </script>
+  <style>
+    input{
+      font-family:inherit;
+      -moz-box-sizing:content-box;
+      background: #999900;
+      width: 400px;height: 400px
+    }               /*single player, multiplayer button*/
+    #wrapper{width:554px;
+      height:186px;
+      padding:10px;
+      background:#000;
+      -webkit-border-radius:8px;
+      /*Game display border*/}
+
+    .lsb{
+      font:15px arial,sans-serif;
+      border:none;
+      cursor:pointer;
+      height:30px;
+      margin:0;
+      outline:0;
+      vertical-align:top        /*singleplayer,multiplayer button style*/}
+    .marginTop200{
+      margin-top: 200px
+    }
+    img{
+      margin-top: -325px;
+      position: relative;
+      z-index: -2;opacity: 0.8
+    }
+    input#button2{
+      background: royalblue;
+      padding-right: 140px
+    }
+    input#button1{
+      background: royalblue;
+      padding-right: 140px
+    }
+    .memo{
+      border-radius:70px;
+      margin-top:25px;
+      width: 254px;  padding-bottom: 25px;
+      height: 66px;
+      position: relative;
+      background: azure;
+      outline: 0;  overflow: hidden;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    }
+    table{
+      width:125%
+    }
+  </style>
+  <script>
+      funcsPac.dom = {};
+      funcsPac.browser = {};
+      funcsPac.browser.engine = {}
+      funcsPac.dom.remove = function (a) {
+          return a && a.parentNode && a.parentNode.removeChild(a)         //at first,remove ready-image.
+      };
+      funcsPac.browser.engine.IE = false
+      funcsPac.pml = function () {
+          function d(a) {
+              if (!funcsPac.pml_installed) {
+                  if (!a) {}
+                  a = document.createElement("script");
+                  a.type = "text/javascript";
+                  a.src = "src/js/pacman.js";
+                  document.body.appendChild(a)
+              }
+          }
+          function e() {
+              if (document.f && document.f.btnI) document.f.btnI.onclick = function () {
+                  typeof funcsPac.pacman != "undefined" ? funcsPac.pacman.selectmember() : d(false);<!-- If single player button pressed, insert player1 -->
+                  return false
+              }
+              if (document.f && document.f.btnII) document.f.btnII.onclick = function () {
+                  typeof funcsPac.pacman != "undefined" ? funcsPac.pacman.selectmember2() : d(false);<!-- If multi player button pressed, insert player2 -->
+                  return false
+              }
+          }
+          if (!funcsPac.pml_loaded) {
+              e();
+          }
+      };
+  </script>
+
+</head>
+
+<body style="background-color: aquamarine;
+    font-family:monospace;
+    margin-top:50px   ">
+  <center>
+  <div id="wrapper" class="marginTop200">                                                                                                            <!-- hover event game display -->
+  	<div id='location' title="Pacman">
+  		<div id="location-l">
+  			<div id="location-b">
+  			</div>
+  		</div>
+    </div>
+
+  </div>
+
+    <img src="pacman.png">
+    <div class="memo">
+
+    <form action="#submit" name='f'>
+    <table  cellpadding='0' cellspacing='0'>
+      <tr valign='top'>
+          <td align='center' nowrap><br>
+            <span class='lsbb'>
+              <input name='btnII' type='button' value="1 Player" class='lsb'  id="button1" >         <!-- single player button-->
+            </span>
+          </td>
+      </tr>
+      <tr valign='top'>
+      <td align='center' nowrap><br>
+            <span class='lsbb' >
+              <input name='btnI' type='submit' value="2 players" class='lsb btn btn-primary btn-sm' id="button2">   <!-- multi player button-->
+            </span>
+      </td>
+      </tr>
+    </table>
+  </form>
+   </div>
+
+  <script>funcsPac.pml && funcsPac.pml()</script>
+
+  </center>
+</body>
+</html>
