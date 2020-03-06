@@ -1,2 +1,2 @@
-# HTML5-GAME-PACMAN with eugene
+# HTML5-GAME-PACMAN
 
